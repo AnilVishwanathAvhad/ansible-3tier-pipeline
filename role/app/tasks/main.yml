@@ -1,0 +1,23 @@
+- name: Install Python and pip
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - "{{ app_package }}"
+    - python3-pip
+
+- name: Install Flask
+  pip:
+    name: flask
+
+- name: Copy Flask Application
+  copy:
+    src: flask_app.py
+    dest: /opt/flask_app.py
+    mode: '0755'
+
+- name: Run Flask App
+  shell: "nohup python3 /opt/flask_app.py &"
+  args:
+    creates: /tmp/flask_running
+

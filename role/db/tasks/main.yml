@@ -1,0 +1,22 @@
+- name: Install MariaDB Server
+  yum:
+    name: "{{ db_package }}"
+    state: present
+
+- name: Start DB service
+  service:
+    name: mariadb
+    state: started
+    enabled: true
+
+- name: Install PyMySQL for Ansible
+  pip:
+    name: PyMySQL
+
+- name: Create MySQL User
+  mysql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    priv: '*.*:ALL'
+    state: present
+

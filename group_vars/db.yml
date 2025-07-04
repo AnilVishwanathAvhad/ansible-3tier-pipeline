@@ -1,0 +1,4 @@
+db_package: mariadb-server
+db_user: appuser
+db_password: appPass123
+

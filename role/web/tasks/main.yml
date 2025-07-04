@@ -1,0 +1,16 @@
+- name: Install Apache Web Server
+  yum:
+    name: "{{ web_package }}"
+    state: present
+
+- name: Start Apache service
+  service:
+    name: "{{ web_package }}"
+    state: started
+    enabled: true
+
+- name: Deploy Web Index Page
+  copy:
+    content: "<h1>Welcome to the Web Layer</h1>"
+    dest: /var/www/html/index.html
+

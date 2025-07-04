@@ -1,0 +1,18 @@
+---
+- name: Configure Web Layer
+  hosts: web
+  become: yes
+  roles:
+    - web
+
+- name: Configure App Layer
+  hosts: app
+  become: yes
+  roles:
+    - app
+
+- name: Configure DB Layer
+  hosts: db
+  become: yes
+  roles:
+    - db
